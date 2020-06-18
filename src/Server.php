@@ -182,8 +182,9 @@ class Server
     public function getCachePath()
     {
         $request = (new RequestArgumentsResolver())->getRequest(func_get_args());
+        $parameters = array_only($request->query->all(), ['w','h']);
 
-        $path = md5($this->getSourcePath($request).'?'.http_build_query($request->query->all()));
+        $path = md5($this->getSourcePath($request).'?'.http_build_query($parameters));
 
         if ($this->cachePathPrefix) {
             $path = $this->cachePathPrefix.'/'.$path;
