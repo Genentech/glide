@@ -314,7 +314,7 @@ class Server
         //    );
         //}
 
-        //try {
+        try {
             $write = $this->cache->write(
                 $this->getCachePath($request),
                 //$this->api->run($request, $tmp)
@@ -326,11 +326,11 @@ class Server
                     'Could not write the image `'.$this->getCachePath($request).'`.'
                 );
             }
-        //} catch (FileExistsException $exception) {
+        } catch (FileExistsException $exception) {
             // This edge case occurs when the target already exists
             // because it's currently be written to disk in another
             // request. It's best to just fail silently.
-        //}
+        }
 
         //unlink($tmp);
 
